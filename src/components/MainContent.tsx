@@ -3,19 +3,13 @@ import { AddTicket } from "./AddTicket";
 import { useState } from "react";
 import { ITodoItem } from "../utils/interfaces";
 import { InputEvent } from "../utils/interfaces";
+import axios from "axios";
 
-export function MainContent(): JSX.Element {
-  const [todoItems, setTodoItems] = useState<ITodoItem[]>([
-    {
-      id: 1,
-      name: "clean",
-      summary: "do some cleaning",
-      priority: "low",
-      status: "todo",
-    },
-  ]);
+interface MainContentProps {
+  todoItems: ITodoItem[];
+}
+export function MainContent({ todoItems }: MainContentProps): JSX.Element {
   const [formInput, setFormInput] = useState<ITodoItem>({
-    id: todoItems[todoItems.length - 1].id ?? 1,
     name: null,
     summary: null,
     priority: null,
@@ -23,8 +17,8 @@ export function MainContent(): JSX.Element {
   });
 
   function handleAddTodoitem() {
-    console.log("previous items:", todoItems);
-    setTodoItems(() => [...todoItems, formInput]);
+    const url = "http://localhost:4000/items";
+    axios.post(url, formInput).then((res) => console.log(res));
   }
   function handleChangedInput(e: InputEvent) {
     setFormInput(() => {

@@ -8,7 +8,9 @@ export function Todo({ todoElement }: TodoProps): JSX.Element {
     <div className={todoElement.status}>
       <h4>{todoElement.name}</h4>
       <p>{todoElement.summary}</p>
-      <button>Done</button>
+      <button>Complete</button>
+      <button>Edit</button>
+      <button>Delete</button>
     </div>
   );
 }

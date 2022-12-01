@@ -1,7 +1,7 @@
 export type status = "todo" | "done";
 
 export interface ITodoItem {
-  id: number;
+  id?: number;
   name: string | null;
   summary: string | null;
   priority: string | null;
