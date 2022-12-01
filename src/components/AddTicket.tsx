@@ -11,7 +11,7 @@ export function AddTicket({
 }: AddTicketProps): JSX.Element {
   return (
     <div className="addticket-Container">
-      <form action="" onSubmit={(e) => handleAddTodoitem}>
+      <form action="" onSubmit={(e) => handleAddTodoitem()}>
         <input
           name="name"
           type="text"
