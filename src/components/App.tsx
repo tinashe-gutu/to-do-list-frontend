@@ -1,7 +1,6 @@
 import { MainContent } from "./MainContent";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { url } from "inspector";
 import { ITodoItem } from "../utils/interfaces";
 function App(): JSX.Element {
   const [todoItems, setTodoItems] = useState<ITodoItem[]>([]);
