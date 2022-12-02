@@ -1,16 +1,32 @@
-import { ITodoItem } from "../utils/interfaces";
+import { IEditTodoItem, ITodoItem } from "../utils/interfaces";
+import axios from "axios";
 
 interface TodoProps {
   todoElement: ITodoItem;
+  handleEditTicket: (ticket: ITodoItem) => void;
 }
-export function Todo({ todoElement }: TodoProps): JSX.Element {
+export function Todo({
+  todoElement,
+  handleEditTicket,
+}: TodoProps): JSX.Element {
+  function handleDeleteTicket() {
+    console.log(todoElement.id);
+    axios.delete("http://localhost:4000/items/" + todoElement.id);
+  }
+
   return (
     <div className={todoElement.status}>
       <h4>{todoElement.name}</h4>
       <p>{todoElement.summary}</p>
       <button>Complete</button>
-      <button>Edit</button>
-      <button>Delete</button>
+      <button onClick={() => handleEditTicket(todoElement)}>Edit</button>
+      <button
+        onClick={() => {
+          handleDeleteTicket(); window.location.reload();
+        }}
+      >
+        Delete
+      </button>
     </div>
   );
 }
