@@ -1,4 +1,4 @@
-import { IEditTodoItem, ITodoItem } from "../utils/interfaces";
+import { ITodoItem } from "../utils/interfaces";
 import axios from "axios";
 
 interface TodoProps {
@@ -22,7 +22,8 @@ export function Todo({
       <button onClick={() => handleEditTicket(todoElement)}>Edit</button>
       <button
         onClick={() => {
-          handleDeleteTicket(); window.location.reload();
+          handleDeleteTicket();
+          window.location.reload();
         }}
       >
         Delete

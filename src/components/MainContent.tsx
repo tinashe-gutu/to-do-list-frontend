@@ -57,7 +57,7 @@ export function MainContent({ todoItems }: MainContentProps): JSX.Element {
         handleChangedInput={handleChangedInput}
         handleAddTodoitem={handleAddTodoitem}
       />
-      {editTicket.edit && <EditTicket  todoItem={editTicket}/>}
+      {editTicket.edit && <EditTicket todoItem={editTicket} />}
       <TodoList todoItems={todoItems} handleEditTicket={handleEditTicket} />
     </div>
   );
