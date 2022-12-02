@@ -10,4 +10,9 @@ export interface ITodoItem {
 
 export type InputEvent =
   | React.ChangeEvent<HTMLInputElement>
-  | React.ChangeEvent<HTMLSelectElement>;
+  | React.ChangeEvent<HTMLSelectElement>
+  | React.ChangeEvent<HTMLTextAreaElement>;
+
+export interface IEditTodoItem extends ITodoItem {
+  edit: boolean;
+}

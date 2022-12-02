@@ -1,8 +1,8 @@
 import { TodoList } from "./TodoList";
 import { AddTicket } from "./AddTicket";
 import { useState } from "react";
-import { ITodoItem } from "../utils/interfaces";
-import { InputEvent } from "../utils/interfaces";
+import { ITodoItem, InputEvent, IEditTodoItem } from "../utils/interfaces";
+import { EditTicket } from "./EditTicket";
 import axios from "axios";
 
 interface MainContentProps {
@@ -10,6 +10,13 @@ interface MainContentProps {
 }
 export function MainContent({ todoItems }: MainContentProps): JSX.Element {
   const [formInput, setFormInput] = useState<ITodoItem>({
+    name: null,
+    summary: null,
+    priority: null,
+    status: "todo",
+  });
+  const [editTicket, setEditTicket] = useState<IEditTodoItem>({
+    edit: false,
     name: null,
     summary: null,
     priority: null,
@@ -25,6 +32,18 @@ export function MainContent({ todoItems }: MainContentProps): JSX.Element {
       return { ...formInput, [e.target.name]: e.target.value };
     });
   }
+  function handleEditTicket(ticket: ITodoItem) {
+    setEditTicket(() => {
+      return {
+        id: ticket.id,
+        edit: true,
+        name: ticket.name,
+        summary: ticket.summary,
+        priority: ticket.priority,
+        status: ticket.status,
+      };
+    });
+  }
   return (
     <div>
       <nav>
@@ -38,7 +57,8 @@ export function MainContent({ todoItems }: MainContentProps): JSX.Element {
         handleChangedInput={handleChangedInput}
         handleAddTodoitem={handleAddTodoitem}
       />
-      <TodoList todoItems={todoItems} />
+      {editTicket.edit && <EditTicket todoItem={editTicket} />}
+      <TodoList todoItems={todoItems} handleEditTicket={handleEditTicket} />
     </div>
   );
 }
