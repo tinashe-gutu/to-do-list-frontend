@@ -5,12 +5,14 @@ import { ITodoItem } from "../utils/interfaces";
 function App(): JSX.Element {
   const [todoItems, setTodoItems] = useState<ITodoItem[]>([]);
   useEffect(() => {
+    fetchTodoItems();
+  });
+  function fetchTodoItems() {
     axios.get("http://localhost:4000/items").then((res) => {
-      console.log(res.data);
       setTodoItems(res.data);
     });
-  }, []);
-  return <MainContent todoItems={todoItems} />;
+  }
+  return <MainContent todoItems={todoItems} fetchTodoItems={fetchTodoItems} />;
 }
 
 export default App;
