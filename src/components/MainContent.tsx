@@ -28,7 +28,7 @@ export function MainContent({
   });
 
   function handleAddTodoitem() {
-    const url = "http://localhost:4000/items";
+    const url = "https://tinashegutu-todo-list.onrender.com/items";
     axios.post(url, formInput);
     setFormInput(() => {
       fetchTodoItems();
@@ -41,7 +41,7 @@ export function MainContent({
     });
   }
   function completedTicket(ticket: ITodoItem) {
-    axios.patch("http://localhost:4000/items/" + ticket.id, {
+    axios.patch("https://tinashegutu-todo-list.onrender.com/items/" + ticket.id, {
       ...ticket,
       status: "done",
     });

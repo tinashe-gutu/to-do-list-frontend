@@ -13,7 +13,7 @@ export function Todo({
 }: TodoProps): JSX.Element {
   function handleDeleteTicket() {
     console.log(todoElement.id);
-    axios.delete("http://localhost:4000/items/" + todoElement.id);
+    axios.delete("https://tinashegutu-todo-list.onrender.com/items/" + todoElement.id);
   }
 
   return (

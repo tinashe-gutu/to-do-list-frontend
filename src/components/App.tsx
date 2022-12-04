@@ -9,7 +9,7 @@ function App(): JSX.Element {
     fetchTodoItems();
   });
   function fetchTodoItems() {
-    axios.get("http://localhost:4000/items").then((res) => {
+    axios.get("https://tinashegutu-todo-list.onrender.com/items").then((res) => {
       setTodoItems(res.data);
     });
   }

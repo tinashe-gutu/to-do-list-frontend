@@ -23,7 +23,7 @@ export function EditTicket({ todoItem }: EditTicketProps): JSX.Element {
 
   function handleSubmitEdit() {
     axios.patch(
-      "http://localhost:4000/items/" + editingTicket.id,
+      "https://tinashegutu-todo-list.onrender.com/items/" + editingTicket.id,
       editingTicket
     );
   }
