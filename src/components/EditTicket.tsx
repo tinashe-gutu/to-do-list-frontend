@@ -50,7 +50,7 @@ export function EditTicket({ todoItem }: EditTicketProps): JSX.Element {
           <option className="high" value="high">
             High
           </option>
-          <option className="middle" value="middle">
+          <option className="intermediate" value="intermediate">
             Middle
           </option>
           <option className="low" value="low">
