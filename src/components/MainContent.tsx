@@ -41,10 +41,13 @@ export function MainContent({
     });
   }
   function completedTicket(ticket: ITodoItem) {
-    axios.patch("https://tinashegutu-todo-list.onrender.com/items/" + ticket.id, {
-      ...ticket,
-      status: "done",
-    });
+    axios.patch(
+      "https://tinashegutu-todo-list.onrender.com/items/" + ticket.id,
+      {
+        ...ticket,
+        status: "done",
+      }
+    );
     fetchTodoItems();
   }
   function handleEditTicket(ticket: ITodoItem) {

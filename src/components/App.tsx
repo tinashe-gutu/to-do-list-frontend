@@ -9,9 +9,11 @@ function App(): JSX.Element {
     fetchTodoItems();
   });
   function fetchTodoItems() {
-    axios.get("https://tinashegutu-todo-list.onrender.com/items").then((res) => {
-      setTodoItems(res.data);
-    });
+    axios
+      .get("https://tinashegutu-todo-list.onrender.com/items")
+      .then((res) => {
+        setTodoItems(res.data);
+      });
   }
   return <MainContent todoItems={todoItems} fetchTodoItems={fetchTodoItems} />;
 }
