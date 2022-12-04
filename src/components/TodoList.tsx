@@ -13,31 +13,37 @@ export function TodoList({
   handleCompletedTicket,
 }: TodoListProps): JSX.Element {
   return (
-    <div>
-      <h1>TODO TASKS</h1>
-      {todoItems
-        .filter((el) => el.status !== "done")
-        .map((el: ITodoItem) => (
-          <div key={el.id}>
-            <Todo
-              todoElement={el}
-              handleEditTicket={handleEditTicket}
-              handleCompletedTicket={handleCompletedTicket}
-            />
-          </div>
-        ))}
-      <h1>COMPLETED TASKS</h1>
-      {todoItems
-        .filter((el) => el.status === "done")
-        .map((el: ITodoItem) => (
-          <div key={el.id}>
-            <Todo
-              todoElement={el}
-              handleEditTicket={handleEditTicket}
-              handleCompletedTicket={handleCompletedTicket}
-            />
-          </div>
-        ))}
+    <div className="todo-container">
+      <div className="todoList-container">
+        <h1>TODO TASKS</h1>
+        {todoItems
+          .filter((el) => el.status !== "done")
+          .sort((a, b) => a.priority.localeCompare(b.priority))
+          .map((el: ITodoItem) => (
+            <div key={el.id} className="todo-task">
+              <Todo
+                todoElement={el}
+                handleEditTicket={handleEditTicket}
+                handleCompletedTicket={handleCompletedTicket}
+              />
+            </div>
+          ))}
+      </div>
+      <div className="completed-container">
+        <h1>COMPLETED</h1>
+        {todoItems
+          .filter((el) => el.status === "done")
+          .sort((a, b) => a.priority.localeCompare(b.priority))
+          .map((el: ITodoItem) => (
+            <div key={el.id} className="completed-task">
+              <Todo
+                todoElement={el}
+                handleEditTicket={handleEditTicket}
+                handleCompletedTicket={handleCompletedTicket}
+              />
+            </div>
+          ))}
+      </div>
     </div>
   );
 }

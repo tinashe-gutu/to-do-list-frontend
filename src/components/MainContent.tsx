@@ -14,16 +14,16 @@ export function MainContent({
   fetchTodoItems,
 }: MainContentProps): JSX.Element {
   const [formInput, setFormInput] = useState<ITodoItem>({
-    name: null,
-    summary: null,
-    priority: null,
+    name: "",
+    summary: "",
+    priority: "",
     status: "todo",
   });
   const [editTicket, setEditTicket] = useState<IEditTodoItem>({
     edit: false,
-    name: null,
-    summary: null,
-    priority: null,
+    name: "",
+    summary: "",
+    priority: "",
     status: "todo",
   });
 
@@ -60,19 +60,14 @@ export function MainContent({
     });
   }
   return (
-    <div>
-      <nav>
-        <ul>
-          <a href="/">Add ticket</a>
-          <a href="/">List</a>
-        </ul>
-      </nav>
-      <h1>Main Content</h1>
+    <div className="main-container">
+      {editTicket.edit && <EditTicket todoItem={editTicket} />}
+      <h1>Todo List</h1>
       <AddTicket
         handleChangedInput={handleChangedInput}
         handleAddTodoitem={handleAddTodoitem}
+        formInput={formInput}
       />
-      {editTicket.edit && <EditTicket todoItem={editTicket} />}
       <TodoList
         todoItems={todoItems}
         handleEditTicket={handleEditTicket}

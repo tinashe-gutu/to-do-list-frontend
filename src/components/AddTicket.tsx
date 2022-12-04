@@ -1,16 +1,18 @@
-import { InputEvent } from "../utils/interfaces";
+import { InputEvent, ITodoItem } from "../utils/interfaces";
 
 interface AddTicketProps {
   handleChangedInput: (event: InputEvent) => void;
   handleAddTodoitem: () => void;
+  formInput: ITodoItem;
 }
 
 export function AddTicket({
   handleChangedInput,
   handleAddTodoitem,
+  formInput,
 }: AddTicketProps): JSX.Element {
   return (
-    <div className="addticket-Container">
+    <div className="addticket-container">
       <form
         action=""
         onSubmit={(e) => {
@@ -39,11 +41,18 @@ export function AddTicket({
           onChange={(e) => {
             handleChangedInput(e);
           }}
+          className={formInput.priority ?? ""}
         >
           <option value="">--Choose Priority--</option>
-          <option value="high">High</option>
-          <option value="middle">Middle</option>
-          <option value="low">Low</option>
+          <option className="high" value="high">
+            High
+          </option>
+          <option className="intermediate" value="intermediate">
+            Middle
+          </option>
+          <option className="low" value="low">
+            Low
+          </option>
         </select>
         <input type="submit" />
       </form>

@@ -17,10 +17,13 @@ export function Todo({
   }
 
   return (
-    <div className={todoElement.status}>
+    <div className={(todoElement.status, todoElement.priority ?? "")}>
       <h4>{todoElement.name}</h4>
       <p>{todoElement.summary}</p>
-      <button onClick={() => handleCompletedTicket(todoElement)}>
+      <button
+        disabled={todoElement.status === "done"}
+        onClick={() => handleCompletedTicket(todoElement)}
+      >
         Complete
       </button>
       <button onClick={() => handleEditTicket(todoElement)}>Edit</button>

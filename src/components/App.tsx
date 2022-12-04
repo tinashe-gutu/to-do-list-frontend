@@ -2,6 +2,7 @@ import { MainContent } from "./MainContent";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { ITodoItem } from "../utils/interfaces";
+import "./App.css";
 function App(): JSX.Element {
   const [todoItems, setTodoItems] = useState<ITodoItem[]>([]);
   useEffect(() => {
