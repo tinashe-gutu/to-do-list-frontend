@@ -2,9 +2,9 @@ export type status = "todo" | "done";
 
 export interface ITodoItem {
   id?: number;
-  name: string | null;
-  summary: string | null;
-  priority: string | null;
+  name: string;
+  summary: string;
+  priority: string;
   status: status;
 }
 
