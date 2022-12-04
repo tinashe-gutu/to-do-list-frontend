@@ -7,8 +7,12 @@ import axios from "axios";
 
 interface MainContentProps {
   todoItems: ITodoItem[];
+  fetchTodoItems: () => void;
 }
-export function MainContent({ todoItems }: MainContentProps): JSX.Element {
+export function MainContent({
+  todoItems,
+  fetchTodoItems,
+}: MainContentProps): JSX.Element {
   const [formInput, setFormInput] = useState<ITodoItem>({
     name: null,
     summary: null,
@@ -25,12 +29,23 @@ export function MainContent({ todoItems }: MainContentProps): JSX.Element {
 
   function handleAddTodoitem() {
     const url = "http://localhost:4000/items";
-    axios.post(url, formInput).then((res) => console.log(res));
+    axios.post(url, formInput);
+    setFormInput(() => {
+      fetchTodoItems();
+      return formInput;
+    });
   }
   function handleChangedInput(e: InputEvent) {
     setFormInput(() => {
       return { ...formInput, [e.target.name]: e.target.value };
     });
+  }
+  function completedTicket(ticket: ITodoItem) {
+    axios.patch("http://localhost:4000/items/" + ticket.id, {
+      ...ticket,
+      status: "done",
+    });
+    fetchTodoItems();
   }
   function handleEditTicket(ticket: ITodoItem) {
     setEditTicket(() => {
@@ -58,7 +73,11 @@ export function MainContent({ todoItems }: MainContentProps): JSX.Element {
         handleAddTodoitem={handleAddTodoitem}
       />
       {editTicket.edit && <EditTicket todoItem={editTicket} />}
-      <TodoList todoItems={todoItems} handleEditTicket={handleEditTicket} />
+      <TodoList
+        todoItems={todoItems}
+        handleEditTicket={handleEditTicket}
+        handleCompletedTicket={completedTicket}
+      />
     </div>
   );
 }
