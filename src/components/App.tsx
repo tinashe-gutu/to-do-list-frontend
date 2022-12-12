@@ -7,7 +7,7 @@ function App(): JSX.Element {
   const [todoItems, setTodoItems] = useState<ITodoItem[]>([]);
   useEffect(() => {
     fetchTodoItems();
-  }, []);
+  }, [todoItems]);
   function fetchTodoItems() {
     axios
       .get("https://tinashegutu-todo-list.onrender.com/items")
