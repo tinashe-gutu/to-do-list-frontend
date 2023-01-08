@@ -8,7 +8,7 @@ function App(): JSX.Element {
   useEffect(() => {
     console.log("fetching");
     fetchTodoItems();
-  },[]);
+  }, []);
 
   async function fetchTodoItems() {
     const response = await axios.get(

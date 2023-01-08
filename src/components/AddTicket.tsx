@@ -27,6 +27,7 @@ export function AddTicket({
           onChange={(e) => {
             handleChangedInput(e);
           }}
+          required
         />
         <input
           name="summary"
@@ -35,6 +36,7 @@ export function AddTicket({
           onChange={(e) => {
             handleChangedInput(e);
           }}
+          required
         />
         <select
           name="priority"
@@ -42,6 +44,7 @@ export function AddTicket({
             handleChangedInput(e);
           }}
           className={formInput.priority ?? ""}
+          required
         >
           <option value="">--Choose Priority--</option>
           <option className="high" value="high">
