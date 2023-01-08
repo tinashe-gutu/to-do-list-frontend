@@ -27,21 +27,18 @@ export function MainContent({
     status: "todo",
   });
 
-  function handleAddTodoitem() {
+  async function handleAddTodoitem() {
     const url = "https://tinashegutu-todo-list.onrender.com/items";
-    axios.post(url, formInput);
-    setFormInput(() => {
-      fetchTodoItems();
-      return formInput;
-    });
+    await axios.post(url, formInput);
+    fetchTodoItems();
   }
   function handleChangedInput(e: InputEvent) {
     setFormInput(() => {
       return { ...formInput, [e.target.name]: e.target.value };
     });
   }
-  function completedTicket(ticket: ITodoItem) {
-    axios.patch(
+  async function completedTicket(ticket: ITodoItem) {
+    await axios.patch(
       "https://tinashegutu-todo-list.onrender.com/items/" + ticket.id,
       {
         ...ticket,
@@ -75,6 +72,7 @@ export function MainContent({
         todoItems={todoItems}
         handleEditTicket={handleEditTicket}
         handleCompletedTicket={completedTicket}
+        fetchTodoItems={fetchTodoItems}
       />
     </div>
   );

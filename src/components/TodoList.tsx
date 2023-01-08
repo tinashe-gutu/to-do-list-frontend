@@ -5,12 +5,14 @@ interface TodoListProps {
   todoItems: ITodoItem[];
   handleEditTicket: (ticket: ITodoItem) => void;
   handleCompletedTicket: (ticket: ITodoItem) => void;
+  fetchTodoItems: () => void;
 }
 
 export function TodoList({
   todoItems,
   handleEditTicket,
   handleCompletedTicket,
+  fetchTodoItems,
 }: TodoListProps): JSX.Element {
   return (
     <div className="todo-container">
@@ -25,6 +27,7 @@ export function TodoList({
                 todoElement={el}
                 handleEditTicket={handleEditTicket}
                 handleCompletedTicket={handleCompletedTicket}
+                fetchTodoItems={fetchTodoItems}
               />
             </div>
           ))}
@@ -40,6 +43,7 @@ export function TodoList({
                 todoElement={el}
                 handleEditTicket={handleEditTicket}
                 handleCompletedTicket={handleCompletedTicket}
+                fetchTodoItems={fetchTodoItems}
               />
             </div>
           ))}
