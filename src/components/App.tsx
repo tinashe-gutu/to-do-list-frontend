@@ -6,14 +6,15 @@ import "./App.css";
 function App(): JSX.Element {
   const [todoItems, setTodoItems] = useState<ITodoItem[]>([]);
   useEffect(() => {
+    console.log("fetching");
     fetchTodoItems();
-  }, [todoItems]);
-  function fetchTodoItems() {
-    axios
-      .get("https://tinashegutu-todo-list.onrender.com/items")
-      .then((res) => {
-        setTodoItems(res.data);
-      });
+  },[]);
+
+  async function fetchTodoItems() {
+    const response = await axios.get(
+      "https://tinashegutu-todo-list.onrender.com/items"
+    );
+    setTodoItems(response.data);
   }
   return <MainContent todoItems={todoItems} fetchTodoItems={fetchTodoItems} />;
 }
